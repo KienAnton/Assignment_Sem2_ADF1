@@ -5,7 +5,13 @@ import assignment.sem2.entity.Teacher;
 import java.util.ArrayList;
 
 public class TeacherModel {
-    private ArrayList<Teacher> list = new ArrayList<>();
+    private ArrayList<Teacher> list;
+
+    {
+        list = new ArrayList<Teacher>();
+        list.add(new Teacher("A123", "Kien Nguyen Xuan", "kiencuong789@gmail.com", "0987999120"));
+        list.add(new Teacher("A124", "Kien Nguyen Xuan", "kiencuong789@gmail.com", "0987999120"));
+    }
 
 
     public boolean save(Teacher obj) {
@@ -22,6 +28,7 @@ public class TeacherModel {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getRollNumber().equals(rollNumber)) {
                 obj = list.get(i);
+                break;
             }
         }
         return obj;
@@ -34,7 +41,7 @@ public class TeacherModel {
         }
         existingTeacher.setFullName(updateobj.getFullName());
         existingTeacher.setEmail(updateobj.getEmail());
-        existingTeacher.setTaughtSince(updateobj.getTaughtSince());
+        existingTeacher.setPhone(updateobj.getPhone());
         return true;
     }
 

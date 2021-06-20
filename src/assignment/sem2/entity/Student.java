@@ -24,8 +24,7 @@ public class Student {
                 "", rollNumber, "",
                 "", fullName, "",
                 "", email, "", "",
-                "", phone, "", ""
-                );
+                "", phone, "", "");
     }
 
     public String getRollNumber() {

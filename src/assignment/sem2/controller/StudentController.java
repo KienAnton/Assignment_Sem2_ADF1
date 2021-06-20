@@ -33,7 +33,6 @@ public class StudentController {
         } else {
             System.out.println("Save error");
         }
-
     }
 
     public void showList() {

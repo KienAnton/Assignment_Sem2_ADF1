@@ -6,17 +6,19 @@ public class Teacher {
     private String rollNumber;
     private String fullName;
     private String email;
-    private Date taughtSince;
+    private String phone;
 
-    public Teacher() {
-    }
-
-    public Teacher(String rollNumber, String fullName, String email, Date taughtSince) {
+    public Teacher(String rollNumber, String fullName, String email, String phone) {
         this.rollNumber = rollNumber;
         this.fullName = fullName;
         this.email = email;
-        this.taughtSince = taughtSince;
+        this.phone = phone;
     }
+
+    public Teacher() {
+
+    }
+
 
     @Override
     public String toString() {
@@ -24,10 +26,9 @@ public class Teacher {
                 "", rollNumber, "",
                 "", fullName, "",
                 "", email, "", "",
-                "", taughtSince, "", ""
+                "", phone, "", ""
         );
     }
-
 
     public String getRollNumber() {
         return rollNumber;
@@ -53,12 +54,11 @@ public class Teacher {
         this.email = email;
     }
 
-    public Date getTaughtSince() {
-        return taughtSince;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTaughtSince(Date taughtSince) {
-        this.taughtSince = taughtSince;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
-
 }

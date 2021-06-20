@@ -5,7 +5,14 @@ import assignment.sem2.entity.Student;
 import java.util.ArrayList;
 
 public class StudentModel {
-    private ArrayList<Student> list = new ArrayList<>();
+    private ArrayList<Student> list;
+    {
+        list = new ArrayList<Student>();
+        list.add(new Student("A123", "Kien Nguyen Xuan", "kiencuong789@gmail.com", "0987999120"));
+        list.add(new Student("A124", "Kien Nguyen Xuan", "kiennguyen789@gmail.com", "0987999123"));
+        list.add(new Student("A125", "Kien Nguyen Xuan", "kienxuan789@gmail.com", "0987999122"));
+        list.add(new Student("A126", "Kien Nguyen Xuan", "kienthanh789@gmail.com", "0987999121"));
+    }
 
     public boolean save(Student obj) {
         list.add(obj);

@@ -4,10 +4,9 @@ import assignment.sem2.controller.StudentController;
 
 import java.util.Scanner;
 
-public class StudentMenu {
+public class Menu {
     private StudentController studentController = new StudentController();
     private Scanner scanner = new Scanner(System.in);
-
     public void generateStudentMenu(){
         while (true){
             System.out.println("Sudent mananger");

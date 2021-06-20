@@ -29,7 +29,6 @@ public class StudentController {
         String phone = scanner.nextLine();
         student.setPhone(phone);
         if (studentModel.save(student)) {
-            studentModel.save(student);
             System.out.println("Save success");
         } else {
             System.out.println("Save error");

@@ -1,32 +1,33 @@
 package assignment.sem2.entity;
 
-public class Student {
+import java.util.Date;
+
+public class Teacher {
     private String rollNumber;
     private String fullName;
     private String email;
-    private String phone;
+    private Date taughtSince;
 
-    public Student() {
-
+    public Teacher() {
     }
 
-    public Student(String rollNumber, String fullName, String email, String phone) {
+    public Teacher(String rollNumber, String fullName, String email, Date taughtSince) {
         this.rollNumber = rollNumber;
         this.fullName = fullName;
         this.email = email;
-        this.phone = phone;
+        this.taughtSince = taughtSince;
     }
 
     @Override
-    public String toString(){
-
+    public String toString() {
         return String.format("%10s%10s%10s | %10s%15s%15s | %5s%20s%5s | %5s%10s%5s\n",
                 "", rollNumber, "",
                 "", fullName, "",
                 "", email, "", "",
-                "", phone, "", ""
-                );
+                "", taughtSince, "", ""
+        );
     }
+
 
     public String getRollNumber() {
         return rollNumber;
@@ -52,11 +53,12 @@ public class Student {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public Date getTaughtSince() {
+        return taughtSince;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTaughtSince(Date taughtSince) {
+        this.taughtSince = taughtSince;
     }
+
 }

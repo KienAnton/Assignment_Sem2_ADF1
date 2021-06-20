@@ -1,15 +1,20 @@
 package assignment.sem2.controller;
+
 import assignment.sem2.entity.Student;
+import assignment.sem2.model.StudentModel;
+import sun.font.DelegatingShape;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentController {
-    public ArrayList<Student> list = new ArrayList<>();
+    private StudentModel studentModel = new StudentModel();
+    public ArrayList<Student> list = studentModel.findAll();
     private Scanner scanner = new Scanner(System.in);
     // Viet ham create, yeu cau nguoi dung nhap vao thong tin sinh vien.
     // Tra ve thong tin sinh vien vua nhap.
 
-    public Student create() {
+    public void create() {
         Student student = new Student();
         System.out.println("Please enter student rollNumber: ");
         String rollNumber = scanner.nextLine();
@@ -23,8 +28,13 @@ public class StudentController {
         System.out.println("Please enter student phone: ");
         String phone = scanner.nextLine();
         student.setPhone(phone);
-        list.add(student);
-        return student;
+        if (studentModel.save(student)) {
+            studentModel.save(student);
+            System.out.println("Save success");
+        } else {
+            System.out.println("Save error");
+        }
+
     }
 
     public void showList() {
@@ -33,7 +43,7 @@ public class StudentController {
                 "", "Fullname", "",
                 "", "Email", "",
                 "", "Phone", "");
-        System.out.println("-----------------------------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).toString());
         }
@@ -44,37 +54,23 @@ public class StudentController {
     public void search() {
         System.out.println("Please enter rollnumber to search: ");
         String rollNumber = scanner.nextLine();
-        int studentIndex = -1;
-        for (int i = 0; i < list.size(); i++) {
-            Student student = list.get(i);
-            if (student.getRollNumber().equals(rollNumber)) {
-                studentIndex = i;
-                break;
-            }
-        }
-        if (studentIndex == -1) {
+        Student student = studentModel.findById(rollNumber);
+        if (student == null) {
             System.out.println("Student is not found!\n");
         } else {
-            System.out.printf("Found student with information: %s\n", list.get(studentIndex).toString());
+            System.out.printf("Found student with information: %s\n", student.toString());
         }
     }
 
 
     public void delete() {
-        System.out.println("Please enter rollNumber: ");
+        System.out.println("Please enter rollNumber to delete: ");
         String rollNumber = scanner.nextLine();
-        int studentIndex = -1;
-        for (int i = 0; i < list.size(); i++) {
-            Student student = list.get(i);
-            if (student.getRollNumber().equals(rollNumber)) {
-                studentIndex = i;
-                break;
-            }
-        }
-        if (studentIndex == -1) {
-            System.err.printf("Student is not found!\n");
+        Student student = studentModel.findById(rollNumber);
+        if (student == null) {
+            System.out.println("Student is not found!\n");
         } else {
-            System.out.printf("Found student with information : %s\n", list.get(studentIndex).toString());
+            System.out.printf("Found student with information: %s\n", student.toString());
         }
         System.out.println("Are you sure delete?");
         System.out.println("Select 1 to delete");
@@ -83,7 +79,10 @@ public class StudentController {
         scanner.nextLine();
         switch (choice) {
             case 1:
-                list.remove(list.get(studentIndex));
+                if (studentModel.delete(rollNumber)) {
+                    System.out.printf("Delete student success!\n");
+                } else
+                    System.err.println("Acction fails");
                 break;
             case 0:
                 break;
@@ -91,27 +90,26 @@ public class StudentController {
     }
 
     public void upddate() {
-        System.out.println("Please enter rollNumber: ");
+        System.out.println("Please enter rollNumber to update: ");
         String rollNumber = scanner.nextLine();
-        int studentIndex = -1;
-        for (int i = 0; i < list.size(); i++) {
-            Student student = list.get(i);
-            if (student.getRollNumber().equals(rollNumber)) {
-                studentIndex = i;
-                break;
-            }
-        }
-        if (studentIndex == -1) {
+        Student student = studentModel.findById(rollNumber);
+        if (student == null) {
             System.out.println("Student is not found!\n");
         } else {
-            System.out.printf("Found student with informatin: %s\n", list.get(studentIndex).toString());
+            System.out.printf("Found student with information: %s\n", student.toString());
         }
+        Student updateStudent = studentModel.findById(rollNumber);
         System.out.println("Please enter student full name:");
-        list.get(studentIndex).setFullName(scanner.nextLine());
+        updateStudent.setFullName(scanner.nextLine());
         System.out.println("Please enter student email:");
-        list.get(studentIndex).setEmail(scanner.nextLine());
+        updateStudent.setEmail(scanner.nextLine());
         System.out.println("Please enter student phone number:");
-        list.get(studentIndex).setPhone(scanner.nextLine());
-        System.out.println("Update student is sucsess!");
+        updateStudent.setPhone(scanner.nextLine());
+        if (studentModel.update(rollNumber, updateStudent)) {
+            System.out.println("Update student is sucsess!");
+        }else {
+            System.err.println("Acction fails");
+        }
+
     }
 }

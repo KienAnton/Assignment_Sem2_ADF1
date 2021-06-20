@@ -14,6 +14,9 @@ public class MainThread {
         studentController.list.add(new Student("A124", "Kien Nguyen Xuan", "kiennguyen789@gmail.com", "0987999123"));
         studentController.list.add(new Student("A125", "Kien Nguyen Xuan", "kienxuan789@gmail.com", "0987999122"));
         studentController.list.add(new Student("A126", "Kien Nguyen Xuan", "kienthanh789@gmail.com", "0987999121"));
-        studentController.search();
+        studentController.upddate();
+        studentController.showList();
+
+
     }
 }
